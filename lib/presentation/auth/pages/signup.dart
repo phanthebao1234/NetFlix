@@ -1,16 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:netflix/common/helper/message/display_message.dart';
 import 'package:netflix/common/helper/navigation/app_navigation.dart';
 import 'package:netflix/core/configs/theme/app_colors.dart';
-import 'package:netflix/data/auth/models/signin_req_params.dart';
-import 'package:netflix/domain/auth/usecases/signin.dart';
-import 'package:netflix/presentation/auth/pages/signup.dart';
+import 'package:netflix/data/auth/models/signup_req_params.dart';
+import 'package:netflix/domain/auth/usecases/signup.dart';
+import 'package:netflix/presentation/auth/pages/signin.dart';
 import 'package:netflix/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
-class SigninPage extends StatelessWidget {
-  SigninPage({super.key});
+class SignupPage extends StatelessWidget {
+  SignupPage({super.key});
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -24,7 +23,7 @@ class SigninPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _signinText(),
+          _signupText(),
           const SizedBox(
             height: 30,
           ),
@@ -32,17 +31,17 @@ class SigninPage extends StatelessWidget {
           const SizedBox(height: 20),
           _passwordField(),
           const SizedBox(height: 40),
-          _signinButton(context),
+          _signupButton(),
           const SizedBox(height: 20),
-          _signupText(context),
+          _signinText(context),
         ],
       ),
     ));
   }
 
-  Widget _signinText() {
+  Widget _signupText() {
     return const Text(
-      "Sign in",
+      "Sign Up",
       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
     );
   }
@@ -65,36 +64,32 @@ class SigninPage extends StatelessWidget {
     );
   }
 
-  Widget _signinButton(BuildContext context) {
+  Widget _signupButton() {
     return ReactiveButton(
-      title: "Sign In",
+      title: "Sign Up",
       activeColor: AppColors.primary,
       onPressed: () async {
-        return await sl<SigninUseCase>().call(
-          params: SigninReqParams(
-            email: _emailController.text,
-            password: _passwordController.text,
-          ),
+        await sl<SignupUseCase>().call(
+          params: SignupReqParams(
+              email: _emailController.text, password: _passwordController.text),
         );
+        
       },
       onSuccess: () {},
-      onFailure: (error) {
-        DisplayMessage.errorMessage(error, context);
-      },
+      onFailure: (error) {},
     );
   }
 
-  Widget _signupText(BuildContext context) {
+  Widget _signinText(BuildContext context) {
     return Text.rich(TextSpan(
       children: [
-        const TextSpan(text: "Don't you have account ?"),
+        const TextSpan(text: "If your have account ? "),
         TextSpan(
-          text: "Sign Up",
+          text: "Sign In",
           style: const TextStyle(color: Colors.blue),
           recognizer: TapGestureRecognizer()
             ..onTap = () {
-              print('run here');
-              AppNavigator.push(context, SignupPage());
+              AppNavigator.push(context, SigninPage());
             },
         ),
       ],
