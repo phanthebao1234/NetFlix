@@ -25,7 +25,6 @@ class AuthApiServiceImpl extends AuthApiService {
 
   @override
   Future<Either> signin(SigninReqParams params) async {
-    print(params);
     try {
       var response =
           await sl<DioClient>().post(ApiUrl.signin, data: params.toJson());

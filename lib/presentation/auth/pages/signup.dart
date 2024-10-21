@@ -1,10 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:netflix/common/helper/message/display_message.dart';
 import 'package:netflix/common/helper/navigation/app_navigation.dart';
 import 'package:netflix/core/configs/theme/app_colors.dart';
 import 'package:netflix/data/auth/models/signup_req_params.dart';
 import 'package:netflix/domain/auth/usecases/signup.dart';
 import 'package:netflix/presentation/auth/pages/signin.dart';
+import 'package:netflix/presentation/home/pages/home.dart';
 import 'package:netflix/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
@@ -31,7 +33,7 @@ class SignupPage extends StatelessWidget {
           const SizedBox(height: 20),
           _passwordField(),
           const SizedBox(height: 40),
-          _signupButton(),
+          _signupButton(context),
           const SizedBox(height: 20),
           _signinText(context),
         ],
@@ -64,7 +66,7 @@ class SignupPage extends StatelessWidget {
     );
   }
 
-  Widget _signupButton() {
+  Widget _signupButton(BuildContext context) {
     return ReactiveButton(
       title: "Sign Up",
       activeColor: AppColors.primary,
@@ -73,10 +75,14 @@ class SignupPage extends StatelessWidget {
           params: SignupReqParams(
               email: _emailController.text, password: _passwordController.text),
         );
-        
       },
-      onSuccess: () {},
-      onFailure: (error) {},
+      onSuccess: () {
+        AppNavigator.pushAndRemove(context, const HomePage());
+      },
+      onFailure: (error) {
+        // Xuất thông báo lỗi
+        DisplayMessage.errorMessage(error, context);
+      },
     );
   }
 

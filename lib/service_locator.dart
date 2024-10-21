@@ -3,6 +3,7 @@ import 'package:netflix/core/network/dio_client.dart';
 import 'package:netflix/data/auth/repositories/auth.dart';
 import 'package:netflix/data/auth/sources/auth_api_service.dart';
 import 'package:netflix/domain/auth/repositories/auth.dart';
+import 'package:netflix/domain/auth/usecases/is_logged_in.dart';
 import 'package:netflix/domain/auth/usecases/signin.dart';
 import 'package:netflix/domain/auth/usecases/signup.dart';
 
@@ -20,4 +21,5 @@ void setupServiceLocator() {
   // Usecases
   sl.registerSingleton<SignupUseCase>(SignupUseCase());
   sl.registerSingleton<SigninUseCase>(SigninUseCase());
+  sl.registerSingleton<IsLoggedInUseCase>(IsLoggedInUseCase());
 }

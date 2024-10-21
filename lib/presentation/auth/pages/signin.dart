@@ -6,6 +6,7 @@ import 'package:netflix/core/configs/theme/app_colors.dart';
 import 'package:netflix/data/auth/models/signin_req_params.dart';
 import 'package:netflix/domain/auth/usecases/signin.dart';
 import 'package:netflix/presentation/auth/pages/signup.dart';
+import 'package:netflix/presentation/home/pages/home.dart';
 import 'package:netflix/service_locator.dart';
 import 'package:reactive_button/reactive_button.dart';
 
@@ -77,8 +78,11 @@ class SigninPage extends StatelessWidget {
           ),
         );
       },
-      onSuccess: () {},
+      onSuccess: () {
+        AppNavigator.pushAndRemove(context, const HomePage());
+      },
       onFailure: (error) {
+        // Xuất thông báo lỗi
         DisplayMessage.errorMessage(error, context);
       },
     );
