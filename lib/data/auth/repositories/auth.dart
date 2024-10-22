@@ -17,7 +17,7 @@ class AuthRepositoryImpl extends AuthRepository {
   //  Phương thức này thực hiện việc đăng ký người dùng.
   Future<Either> signup(SignupReqParams params) async {
     // Gọi tới sl<AuthApiService>().signup(params) để thực hiện yêu cầu đăng ký qua API
-    var data = await sl<AuthApiService>().signup(params);
+    var data = await sl<AuthService>().signup(params);
     // Sử dụng fold để xử lý kết quả trả về
     return data.fold(
       // Nếu có lỗi, trả về Left(error).
@@ -38,7 +38,7 @@ class AuthRepositoryImpl extends AuthRepository {
   // Phương thức này thực hiện việc đăng nhập người dùng
   Future<Either> signin(SigninReqParams params) async {
     // Gọi tới sl<AuthApiService>().signin(params) để thực hiện yêu cầu đăng nhập qua API.
-    var data = await sl<AuthApiService>().signin(params);
+    var data = await sl<AuthService>().signin(params);
     // Sử dụng fold để xử lý kết quả trả về:
     return data.fold(
       // Nếu có lỗi, trả về Left(error).
@@ -66,6 +66,5 @@ class AuthRepositoryImpl extends AuthRepository {
     } else {
       return true;
     }
-    
   }
 }
