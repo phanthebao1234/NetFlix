@@ -20,6 +20,8 @@ dependencies:
   shared_preferences: ^2.3.2  
   logger: ^2.4.0
   get_it:
+  flutter_svg:
+  fan_carousel_image_slider: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -33,4 +35,5 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/vectors/
 
