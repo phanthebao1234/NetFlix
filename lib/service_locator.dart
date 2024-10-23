@@ -9,6 +9,7 @@ import 'package:netflix/domain/auth/usecases/is_logged_in.dart';
 import 'package:netflix/domain/auth/usecases/signin.dart';
 import 'package:netflix/domain/auth/usecases/signup.dart';
 import 'package:netflix/domain/movie/repositories/movie.dart';
+import 'package:netflix/domain/movie/usecases/get_now_playing_movies.dart';
 import 'package:netflix/domain/movie/usecases/get_trending.dart';
 
 final sl = GetIt.instance;
@@ -25,14 +26,15 @@ void setupServiceLocator() {
   sl.registerSingleton<MovieRepository>(MovieRepositoryImpl());
 
   // Usecases
-  
+
   // Auth Usecases
   sl.registerSingleton<SignupUseCase>(SignupUseCase());
   sl.registerSingleton<SigninUseCase>(SigninUseCase());
   sl.registerSingleton<IsLoggedInUseCase>(IsLoggedInUseCase());
   // --------------------------------
-  
+
   // Movie Usecases
   sl.registerSingleton<GetTrendingMoviesUseCase>(GetTrendingMoviesUseCase());
-  
+  sl.registerSingleton<GetNowPlayingMoviesUseCase>(
+      GetNowPlayingMoviesUseCase());
 }

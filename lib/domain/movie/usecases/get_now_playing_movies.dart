@@ -3,9 +3,9 @@ import 'package:netflix/core/usecase/signup.dart';
 import 'package:netflix/domain/movie/repositories/movie.dart';
 import 'package:netflix/service_locator.dart';
 
-class GetTrendingMoviesUseCase extends UseCase<Either, dynamic> {
+class GetNowPlayingMoviesUseCase extends UseCase<Either, dynamic> {
   @override
   Future<Either> call({params}) async {
-    return await sl<MovieRepository>().getTrendingMovies();
+    return await sl<MovieRepository>().getNowplayingMovies();
   }
 }

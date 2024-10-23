@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:netflix/common/helper/widgets/appbar/app_bar.dart';
 import 'package:netflix/core/configs/assets/app_vectors.dart';
+import 'package:netflix/presentation/home/widgets/category_text.dart';
+import 'package:netflix/presentation/home/widgets/trending_movies.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,7 +18,16 @@ class HomePage extends StatelessWidget {
           child: SvgPicture.asset(AppVectors.logo),
         ),
       ),
-      body: Container(),
+      body: const SingleChildScrollView(
+        child: Column(
+          children: [
+            CategoryText(title: 'Trendings 🔥'),
+            TrendingMovies(),
+            SizedBox(height: 15,),
+            CategoryText(title: 'Now playing')
+            ],
+        ),
+      ),
     );
   }
 }
