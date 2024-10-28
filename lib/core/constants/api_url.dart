@@ -1,7 +1,7 @@
 class ApiUrl {
-  static const baseURL =
-      'https://netflix-backend-production-8413.up.railway.app/';
-  static const baseURLKKPhim = 'https://phimapi.com/';
+  static const baseURL = 'http://192.168.1.13:4545/';
+  static const baseURLKKPhim = 'https://phimapi.com';
+  static const featureMovie = '$baseURLKKPhim/v1/api/danh-sach/phim-le';
   static const apiV = 'api/v1/';
 
   static const signup = '${apiV}auth/signup';

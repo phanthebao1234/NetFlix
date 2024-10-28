@@ -2,8 +2,8 @@ import 'package:netflix/data/movie/models/movie.dart';
 import 'package:netflix/domain/movie/entities/movie.dart';
 
 class MovieMapper {
-  static MovieEntity toEntity(MovieModel movie) {
-    return MovieEntity(
+  static TVEntity toEntity(MovieModel movie) {
+    return TVEntity(
       backdropPath: movie.backdropPath,
       id: movie.id,
       title: movie.title,

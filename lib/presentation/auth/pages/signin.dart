@@ -73,8 +73,8 @@ class SigninPage extends StatelessWidget {
       onPressed: () async {
         return await sl<SigninUseCase>().call(
           params: SigninReqParams(
-            email: _emailController.text,
-            password: _passwordController.text,
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim(),
           ),
         );
       },
@@ -97,7 +97,6 @@ class SigninPage extends StatelessWidget {
           style: const TextStyle(color: Colors.blue),
           recognizer: TapGestureRecognizer()
             ..onTap = () {
-              print('run here');
               AppNavigator.push(context, SignupPage());
             },
         ),

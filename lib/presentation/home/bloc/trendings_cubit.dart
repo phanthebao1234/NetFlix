@@ -3,8 +3,8 @@ import 'package:netflix/domain/movie/usecases/get_trending.dart';
 import 'package:netflix/presentation/home/bloc/trendings_state.dart';
 import 'package:netflix/service_locator.dart';
 
-class TrendingsCubit extends Cubit<TrendingsState> {
-  TrendingsCubit() : super(TrendingsMoviesLoading());
+class NowPlaying extends Cubit<TrendingsState> {
+  NowPlaying() : super(TrendingsMoviesLoading());
 
   void getTrendingMovies() async {
     var returnedData = await sl<GetTrendingMoviesUseCase>().call();

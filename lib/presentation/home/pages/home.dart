@@ -3,6 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:netflix/common/helper/widgets/appbar/app_bar.dart';
 import 'package:netflix/core/configs/assets/app_vectors.dart';
 import 'package:netflix/presentation/home/widgets/category_text.dart';
+import 'package:netflix/presentation/home/widgets/now_playing_movies.dart';
+import 'package:netflix/presentation/home/widgets/popular_tv.dart';
+// import 'package:netflix/presentation/home/widgets/feature_movies.dart';
 import 'package:netflix/presentation/home/widgets/trending_movies.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,9 +26,26 @@ class HomePage extends StatelessWidget {
           children: [
             CategoryText(title: 'Trendings 🔥'),
             TrendingMovies(),
-            SizedBox(height: 15,),
-            CategoryText(title: 'Now playing')
-            ],
+            SizedBox(
+              height: 15,
+            ),
+            CategoryText(title: 'Now Playing ▶️'),
+            SizedBox(
+              height: 15,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            NowPlayingMovies(),
+            SizedBox(
+              height: 15,
+            ),
+            CategoryText(title: 'Popular TV 📺'),
+            SizedBox(
+              height: 15,
+            ),
+            PopularTV(),
+          ],
         ),
       ),
     );

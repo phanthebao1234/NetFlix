@@ -12,28 +12,26 @@ class TrendingMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TrendingsCubit()..getTrendingMovies(),
-      child: BlocBuilder<TrendingsCubit, TrendingsState>(
-          builder: (context, state) {
+      create: (context) => NowPlaying()..getTrendingMovies(),
+      child: BlocBuilder<NowPlaying, TrendingsState>(builder: (context, state) {
         if (state is TrendingsMoviesLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is TrendingsMoviesLoaded) {
-          FanCarouselImageSlider.sliderType2(
+        }
+        if (state is TrendingsMoviesLoaded) {
+          return FanCarouselImageSlider.sliderType1(
             imagesLink: state.movies
                 .map((item) =>
                     AppImages.movieImageBasePath + item.posterPath.toString())
                 .toList(),
             isAssets: false,
             autoPlay: false,
-            sliderHeight: 300,
-            currentItemShadow: const [],
-            sliderDuration: const Duration(milliseconds: 200),
-            imageRadius: 0,
-            slideViewportFraction: 1.2,
+            sliderHeight: 400,
+            showIndicator: true,
           );
-        } else if (state is FailureLoadTrendingsMovies) {
+        }
+        if (state is FailureLoadTrendingsMovies) {
           return Text(state.errorMessage);
         }
         return Container();

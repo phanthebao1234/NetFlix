@@ -5,7 +5,7 @@ abstract class TrendingsState {}
 class TrendingsMoviesLoading extends TrendingsState {}
 
 class TrendingsMoviesLoaded extends TrendingsState {
-  final List<MovieEntity> movies;
+  final List<TVEntity> movies;
   TrendingsMoviesLoaded({required this.movies});
 }
 

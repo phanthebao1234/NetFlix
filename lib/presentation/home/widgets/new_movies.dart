@@ -12,9 +12,8 @@ class NewMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TrendingsCubit()..getTrendingMovies(),
-      child: BlocBuilder<TrendingsCubit, TrendingsState>(
-          builder: (context, state) {
+      create: (context) => NowPlaying()..getTrendingMovies(),
+      child: BlocBuilder<NowPlaying, TrendingsState>(builder: (context, state) {
         if (state is TrendingsMoviesLoading) {
           return const Center(
             child: CircularProgressIndicator(),
