@@ -14,6 +14,7 @@ import 'package:netflix/domain/auth/usecases/is_logged_in.dart';
 import 'package:netflix/domain/auth/usecases/signin.dart';
 import 'package:netflix/domain/auth/usecases/signup.dart';
 import 'package:netflix/domain/movie/repositories/movie.dart';
+import 'package:netflix/domain/movie/usecases/get_movie_trailer.dart';
 import 'package:netflix/domain/movie/usecases/get_now_playing_movies.dart';
 import 'package:netflix/domain/movie/usecases/get_trending.dart';
 import 'package:netflix/domain/movie_kkphim/repositories/kkmovie.dart';
@@ -57,4 +58,7 @@ void setupServiceLocator() {
 
   // TV UseCase
   sl.registerSingleton<GetPopularTVUseCase>(GetPopularTVUseCase());
+  
+  // Trailer UseCase
+  sl.registerSingleton<GetMovieTrailerUseCase>(GetMovieTrailerUseCase());
 }

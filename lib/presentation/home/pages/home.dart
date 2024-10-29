@@ -45,6 +45,9 @@ class HomePage extends StatelessWidget {
               height: 15,
             ),
             PopularTV(),
+            SizedBox(
+              height: 15,
+            ),
           ],
         ),
       ),
