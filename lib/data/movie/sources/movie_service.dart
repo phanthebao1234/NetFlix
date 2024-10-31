@@ -1,3 +1,4 @@
+import 'dart:core';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:netflix/core/constants/api_url.dart';
@@ -8,6 +9,8 @@ abstract class MovieService {
   Future<Either> getTrendingMovie();
   Future<Either> getNowplayingMovie();
   Future<Either> getMovieTrailer(int id);
+  Future<Either> getRecommendationMovies(int movieId);
+  Future<Either> getSimilarMovies(int movieId);
 }
 
 class MovieApiService extends MovieService {
@@ -40,4 +43,23 @@ class MovieApiService extends MovieService {
       return Left(e.response!.data['message']);
     }
   }
-}
+
+  @override
+  Future<Either> getRecommendationMovies(int movieId) async {
+    try {
+      var response = await sl<DioClient>().get('${ApiUrl.movie}$movieId/recommendations');
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
+  
+  @override
+  Future<Either> getSimilarMovies(int movieId) async {
+    try {
+      var response = await sl<DioClient>().get('${ApiUrl.movie}$movieId/similar');
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }}

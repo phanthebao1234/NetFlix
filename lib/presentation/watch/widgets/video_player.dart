@@ -1,8 +1,8 @@
-import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/presentation/watch/bloc/trailer_cubit.dart';
 import 'package:netflix/presentation/watch/bloc/trailer_state.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerWidget extends StatelessWidget {
   final int id;
@@ -17,7 +17,10 @@ class VideoPlayerWidget extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         if (state is TrailerMovieLoaded) {
-          return Chewie(controller: state.chewieController,);
+          return YoutubePlayer(
+            controller: state.youtubePlayerController,
+            showVideoProgressIndicator: true,
+          );
         }
         if (state is FailureLoadTrailerMovie) {
           return Center(child: Text(state.errorMessage));

@@ -1,15 +1,12 @@
-import 'package:chewie/chewie.dart';
-import 'package:netflix/core/entity/trailer_entity.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 abstract class TrailerState {}
 
 class TrailerMovieLoading extends TrailerState {}
 
 class TrailerMovieLoaded extends TrailerState {
-  final ChewieController chewieController;
-  TrailerMovieLoaded({required this.chewieController});
-  // final TrailerEntity trailerEntity;
-  // TrailerMovieLoaded({required this.trailerEntity});
+  final YoutubePlayerController youtubePlayerController;
+  TrailerMovieLoaded({required this.youtubePlayerController});
 }
 
 class FailureLoadTrailerMovie extends TrailerState {
