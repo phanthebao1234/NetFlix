@@ -44,9 +44,15 @@ class MovieRepositoryImpl extends MovieRepository {
         return Left(error);
       },
       (data) {
-        var movie =
-            TrailerMapper.toEntity(TrailerModel.fromJson(data['trailer']));
-        return Right(movie);
+        var results = data['trailer'];
+        print(results);
+        if (results == null || results.isEmpty) {
+          return const Left('No trailer found');
+        } else {
+          var movie =
+              TrailerMapper.toEntity(TrailerModel.fromJson(data['trailer']));
+          return Right(movie);
+        }
       },
     );
   }
@@ -67,11 +73,10 @@ class MovieRepositoryImpl extends MovieRepository {
       },
     );
   }
-  
+
   @override
   Future<Either> getSimilarMovies(int movieId) async {
-    var returnedData =
-        await sl<MovieService>().getSimilarMovies(movieId);
+    var returnedData = await sl<MovieService>().getSimilarMovies(movieId);
     return returnedData.fold(
       (error) {
         return Left(error);

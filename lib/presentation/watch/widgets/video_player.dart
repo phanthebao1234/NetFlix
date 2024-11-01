@@ -11,18 +11,18 @@ class VideoPlayerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TrailerCubit()..getTrailerMovie(id),
+      create: (context) => TrailerCubit()..getMovieTrailer(id),
       child: BlocBuilder<TrailerCubit, TrailerState>(builder: (context, state) {
-        if (state is TrailerMovieLoading) {
+        if (state is TrailerLoading) {
           return const Center(child: CircularProgressIndicator());
         }
-        if (state is TrailerMovieLoaded) {
+        if (state is TrailerLoaded) {
           return YoutubePlayer(
             controller: state.youtubePlayerController,
             showVideoProgressIndicator: true,
           );
         }
-        if (state is FailureLoadTrailerMovie) {
+        if (state is FailureLoadTrailer) {
           return Center(child: Text(state.errorMessage));
         }
         return Container();

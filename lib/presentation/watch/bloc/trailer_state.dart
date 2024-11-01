@@ -2,14 +2,14 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 abstract class TrailerState {}
 
-class TrailerMovieLoading extends TrailerState {}
+class TrailerLoading extends TrailerState {}
 
-class TrailerMovieLoaded extends TrailerState {
+class TrailerLoaded extends TrailerState {
   final YoutubePlayerController youtubePlayerController;
-  TrailerMovieLoaded({required this.youtubePlayerController});
+  TrailerLoaded({required this.youtubePlayerController});
 }
 
-class FailureLoadTrailerMovie extends TrailerState {
+class FailureLoadTrailer extends TrailerState {
   final String errorMessage;
-  FailureLoadTrailerMovie({required this.errorMessage});
+  FailureLoadTrailer({required this.errorMessage});
 }

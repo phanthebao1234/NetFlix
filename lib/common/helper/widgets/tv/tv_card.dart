@@ -3,7 +3,7 @@ import 'package:netflix/common/helper/navigation/app_navigation.dart';
 import 'package:netflix/core/configs/assets/app_images.dart';
 import 'package:netflix/core/configs/theme/app_colors.dart';
 import 'package:netflix/domain/tv/entities/tv_entity.dart';
-import 'package:netflix/presentation/watch/pages/watch.dart';
+import 'package:netflix/presentation/watch/pages/tv_watch.dart';
 
 class TVCard extends StatelessWidget {
   final TVEntity tvEntity;
@@ -13,7 +13,11 @@ class TVCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // AppNavigator.push(context, MovieWatchPage(movieEntity: tvEntity,));
+        AppNavigator.push(
+            context,
+            TVWatchPage(
+              tvEntity: tvEntity,
+            ));
       },
       child: Container(
         width: 180,
@@ -82,3 +86,4 @@ class TVCard extends StatelessWidget {
     );
   }
 }
+

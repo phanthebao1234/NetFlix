@@ -38,6 +38,21 @@ class MovieApiService extends MovieService {
   Future<Either> getMovieTrailer(int id) async {
     try {
       var response = await sl<DioClient>().get('${ApiUrl.movie}$id/trailer');
+      if (response.data != null) {
+        return Right(response.data);
+      } else {
+        return Left(response.data['message']);
+      }
+    } on DioException catch (e) {
+      return Left(e.response!.data['message'].toString());
+    }
+  }
+
+  @override
+  Future<Either> getRecommendationMovies(int movieId) async {
+    try {
+      var response =
+          await sl<DioClient>().get('${ApiUrl.movie}$movieId/recommendations');
       return Right(response.data);
     } on DioException catch (e) {
       return Left(e.response!.data['message']);
@@ -45,21 +60,13 @@ class MovieApiService extends MovieService {
   }
 
   @override
-  Future<Either> getRecommendationMovies(int movieId) async {
+  Future<Either> getSimilarMovies(int movieId) async {
     try {
-      var response = await sl<DioClient>().get('${ApiUrl.movie}$movieId/recommendations');
+      var response =
+          await sl<DioClient>().get('${ApiUrl.movie}$movieId/similar');
       return Right(response.data);
     } on DioException catch (e) {
       return Left(e.response!.data['message']);
     }
   }
-  
-  @override
-  Future<Either> getSimilarMovies(int movieId) async {
-    try {
-      var response = await sl<DioClient>().get('${ApiUrl.movie}$movieId/similar');
-      return Right(response.data);
-    } on DioException catch (e) {
-      return Left(e.response!.data['message']);
-    }
-  }}
+}

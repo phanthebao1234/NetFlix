@@ -3,7 +3,7 @@ import 'package:netflix/common/helper/navigation/app_navigation.dart';
 import 'package:netflix/core/configs/assets/app_images.dart';
 import 'package:netflix/core/configs/theme/app_colors.dart';
 import 'package:netflix/domain/movie/entities/movie.dart';
-import 'package:netflix/presentation/watch/pages/watch.dart';
+import 'package:netflix/presentation/watch/pages/movie_watch.dart';
 
 class MovieCard extends StatelessWidget {
   final TVEntity movieEntity;
@@ -31,8 +31,9 @@ class MovieCard extends StatelessWidget {
                     color: Colors.white,
                     image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage(AppImages.movieImageBasePath +
-                            movieEntity.posterPath!)),
+                        image: movieEntity.posterPath != null ? NetworkImage(AppImages.movieImageBasePath +
+                            movieEntity.posterPath!) : const AssetImage(AppImages.noImagePoster),
+                        ),
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(8),
                         topRight: Radius.circular(8))),

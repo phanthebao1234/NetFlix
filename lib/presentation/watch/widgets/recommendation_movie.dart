@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/common/bloc/generic_data_cubit.dart';
+import 'package:netflix/common/bloc/generic_data_state.dart';
 import 'package:netflix/common/helper/widgets/movie/movie_card.dart';
-import 'package:netflix/presentation/watch/bloc/recommendation_movie_cubit.dart';
-import 'package:netflix/presentation/watch/bloc/recommendation_movie_state.dart';
+import 'package:netflix/domain/movie/entities/movie.dart';
+import 'package:netflix/domain/movie/usecases/get_recommend_movie.dart';
+import 'package:netflix/service_locator.dart';
 
 class RecommendationMovie extends StatelessWidget {
   const RecommendationMovie(
@@ -13,15 +16,15 @@ class RecommendationMovie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SimilarMovieCubit()..getRecommendationMovie(movieId),
-      child: BlocBuilder<SimilarMovieCubit, RecommendationMovieState>(
+      create: (context) => GenericDataCubit()..getData<List<TVEntity>>(sl<GetRecommendMovieUseCase>(), params: movieId),
+      child: BlocBuilder<GenericDataCubit, GenericDataState>(
           builder: (context, state) {
-        if (state is RecommendationMovieLoading) {
+        if (state is DataLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
-        if (state is RecommendationMovieLoaded) {
+        if (state is DataLoaded) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -41,18 +44,18 @@ class RecommendationMovie extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return MovieCard(
-                      movieEntity: state.movies[index],
+                      movieEntity: state.data[index],
                     );
                   },
                   separatorBuilder: (context, index) =>
                       const SizedBox(width: 10),
-                  itemCount: state.movies.length,
+                  itemCount: state.data.length,
                 ),
               ),
             ],
           );
         }
-        if (state is FailureLoadRecommendationMovie) {
+        if (state is FailureLoadData) {
           return Text(state.errorMessage);
         }
         return Container();

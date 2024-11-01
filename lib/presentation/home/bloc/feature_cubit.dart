@@ -3,7 +3,7 @@ import 'package:netflix/domain/movie_kkphim/usecases/getFeatureMovies.dart';
 import 'package:netflix/presentation/home/bloc/feature_state.dart';
 import 'package:netflix/service_locator.dart';
 
-class FeatureCubit extends Cubit<FeatureState> {
+class FeatureCubit extends Cubit<GenericState> {
   FeatureCubit() : super(FeatureMoviesLoading());
 
   Future<void> getfeatureMovies() async {

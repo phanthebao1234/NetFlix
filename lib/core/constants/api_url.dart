@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const baseURL = 'http://192.168.1.23:4545/';
+  static const baseURL = 'http://192.168.1.14:4545/';
   static const baseURLKKPhim = 'https://phimapi.com';
   static const featureMovie = '$baseURLKKPhim/v1/api/danh-sach/phim-le';
   static const apiV = 'api/v1/';
