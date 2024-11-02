@@ -16,18 +16,18 @@ class TVEntity {
     required this.voteCount,
   });
 
-  final bool ? adult;
-  final String ? backdropPath;
-  final List < int > genreIds;
-  final int ? id;
-  final List < String > originCountry;
-  final String ? originalLanguage;
-  final String ? originalName;
-  final String ? overview;
-  final double ? popularity;
-  final String ? posterPath;
-  final DateTime ? firstAirDate;
-  final String ? name;
-  final double ? voteAverage;
-  final int ? voteCount;
+  final bool? adult;
+  final String? backdropPath;
+  final List<int> genreIds;
+  final int? id;
+  final List<String> originCountry;
+  final String? originalLanguage;
+  final String? originalName;
+  final String? overview;
+  final double? popularity;
+  final String? posterPath;
+  final DateTime? firstAirDate;
+  final String? name;
+  final double? voteAverage;
+  final int? voteCount;
 }

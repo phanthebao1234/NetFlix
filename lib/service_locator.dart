@@ -23,7 +23,10 @@ import 'package:netflix/domain/movie/usecases/get_tv_trailer.dart';
 import 'package:netflix/domain/movie_kkphim/repositories/kkmovie.dart';
 import 'package:netflix/domain/movie_kkphim/usecases/getFeatureMovies.dart';
 import 'package:netflix/domain/tv/repositories/tv.dart';
+import 'package:netflix/domain/tv/usecases/get_keyword_tv.dart';
 import 'package:netflix/domain/tv/usecases/get_popular_tv.dart';
+import 'package:netflix/domain/tv/usecases/get_recommend_tv.dart';
+import 'package:netflix/domain/tv/usecases/get_similar_tv.dart';
 
 final sl = GetIt.instance;
 
@@ -69,4 +72,10 @@ void setupServiceLocator() {
   sl.registerSingleton<GetRecommendMovieUseCase>(GetRecommendMovieUseCase());
 
   sl.registerSingleton<GetSimilarMovieUseCase>(GetSimilarMovieUseCase());
+
+  // TV Usecase
+  sl.registerSingleton<GetRecommendTVUseCase>(GetRecommendTVUseCase());
+  sl.registerSingleton<GetSimilarTVUseCase>(GetSimilarTVUseCase());
+  sl.registerSingleton<GetKeywordTVsUseCase>(GetKeywordTVsUseCase());
+  
 }

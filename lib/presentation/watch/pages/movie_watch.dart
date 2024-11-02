@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/common/helper/widgets/appbar/app_bar.dart';
 import 'package:netflix/domain/movie/entities/movie.dart';
-import 'package:netflix/presentation/watch/widgets/recommendation_movie.dart';
-import 'package:netflix/presentation/watch/widgets/similar_movie.dart';
+import 'package:netflix/presentation/watch/widgets/recommendation_movies.dart';
+import 'package:netflix/presentation/watch/widgets/recommendation_tvs.dart';
+import 'package:netflix/presentation/watch/widgets/similar_movies.dart';
+import 'package:netflix/presentation/watch/widgets/similar_tvs.dart';
 import 'package:netflix/presentation/watch/widgets/video_overview.dart';
 import 'package:netflix/presentation/watch/widgets/video_player.dart';
 import 'package:netflix/presentation/watch/widgets/video_release_date.dart';
@@ -10,8 +12,9 @@ import 'package:netflix/presentation/watch/widgets/video_title.dart';
 import 'package:netflix/presentation/watch/widgets/video_vote_average.dart';
 
 class MovieWatchPage extends StatelessWidget {
-  const MovieWatchPage({super.key, required this.movieEntity, required this.name});
-  final TVEntity movieEntity;
+  const MovieWatchPage(
+      {super.key, required this.movieEntity, required this.name});
+  final MovieEntity movieEntity;
   final String name;
 
   @override
@@ -26,7 +29,8 @@ class MovieWatchPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             VideoPlayerWidget(
-              id: movieEntity.id!, name: 'movie',
+              id: movieEntity.id!,
+              name: 'movie',
             ),
             const SizedBox(
               height: 16,
@@ -49,14 +53,14 @@ class MovieWatchPage extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            RecommendationMovie(
+            RecommendationMovies(
               movieId: movieEntity.id!,
               title: 'Recommend Movie',
             ),
             const SizedBox(
               height: 16,
             ),
-            SimilarMovie(
+            SimilarMovies(
               movieId: movieEntity.id!,
               title: 'Similar Movie',
             ),

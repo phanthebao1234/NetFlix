@@ -14,7 +14,7 @@ class NowPlayingMovies extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GenericDataCubit()
-        ..getData<List<TVEntity>>(sl<GetNowPlayingMoviesUseCase>()),
+        ..getData<List<MovieEntity>>(sl<GetNowPlayingMoviesUseCase>()),
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
           builder: (context, state) {
         if (state is DataLoading) {

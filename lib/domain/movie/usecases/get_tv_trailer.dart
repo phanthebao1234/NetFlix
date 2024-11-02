@@ -8,5 +8,4 @@ class GetTvTrailerUseCase extends UseCase<Either, int> {
   Future<Either> call({int? params}) async {
     return await sl<MovieRepository>().getTVTrailer(params!);
   }
-  
 }

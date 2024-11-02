@@ -40,7 +40,6 @@ class MovieApiService extends MovieService {
     try {
       var response =
           await sl<DioClient>().get('${ApiUrl.movie}/movie/$id/trailer');
-      print(response.statusCode);
       if (response.statusCode == 200) {
         print(response.data);
       } else if (response.statusCode == 404) {
@@ -57,10 +56,9 @@ class MovieApiService extends MovieService {
   }
 
   @override
-  Future<Either> getTVTrailer(int id) async {
+  Future<Either> getTVTrailer(int tvId) async {
     try {
-      var response =
-          await sl<DioClient>().get('${ApiUrl.movie}/tv/$id/trailer');
+      var response = await sl<DioClient>().get('${ApiUrl.tv}$tvId/trailers');
       print(response.statusCode);
       if (response.statusCode == 200) {
         print(response.data);

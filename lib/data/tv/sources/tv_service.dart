@@ -6,6 +6,9 @@ import 'package:netflix/service_locator.dart';
 
 abstract class TVService {
   Future<Either> getPopularTV();
+  Future<Either> getRecommendationTvs(int tvId);
+  Future<Either> getSimilarTvs(int tvId);
+  Future<Either> getKeywordTvs(int tvId);
 }
 
 class TVApiServiceImpl extends TVService {
@@ -18,5 +21,34 @@ class TVApiServiceImpl extends TVService {
       return Left(e.response!.data['message']);
     }
   }
+
+  @override
+  Future<Either> getRecommendationTvs(int tvId) async {
+    try {
+      var response = await sl<DioClient>().get('${ApiUrl.tv}$tvId/recommendations');
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
+
+  @override
+  Future<Either> getSimilarTvs(int tvId) async {
+    try {
+      var response = await sl<DioClient>().get('${ApiUrl.tv}$tvId/similar');
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
   
+  @override
+  Future<Either> getKeywordTvs(int tvId) async {
+    try {
+      var response = await sl<DioClient>().get('${ApiUrl.tv}$tvId/keywords');
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
 }

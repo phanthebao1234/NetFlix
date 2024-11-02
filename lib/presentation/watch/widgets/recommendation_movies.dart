@@ -4,11 +4,12 @@ import 'package:netflix/common/bloc/generic_data_cubit.dart';
 import 'package:netflix/common/bloc/generic_data_state.dart';
 import 'package:netflix/common/helper/widgets/movie/movie_card.dart';
 import 'package:netflix/domain/movie/entities/movie.dart';
-import 'package:netflix/domain/movie/usecases/get_similar_movies.dart';
+import 'package:netflix/domain/movie/usecases/get_recommend_movie.dart';
 import 'package:netflix/service_locator.dart';
 
-class SimilarMovie extends StatelessWidget {
-  const SimilarMovie({super.key, required this.movieId, required this.title});
+class RecommendationMovies extends StatelessWidget {
+  const RecommendationMovies(
+      {super.key, required this.movieId, required this.title});
   final int movieId;
   final String title;
 
@@ -16,7 +17,7 @@ class SimilarMovie extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GenericDataCubit()
-        ..getData<List<TVEntity>>(sl<GetSimilarMovieUseCase>(),
+        ..getData<List<MovieEntity>>(sl<GetRecommendMovieUseCase>(),
             params: movieId),
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
           builder: (context, state) {

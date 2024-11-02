@@ -1,5 +1,5 @@
-class TVEntity {
-  TVEntity({
+class MovieEntity {
+  MovieEntity({
     required this.backdropPath,
     required this.id,
     required this.title,

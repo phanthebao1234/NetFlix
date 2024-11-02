@@ -2,12 +2,13 @@ import 'package:netflix/data/kkphim_movie/models/movie_model.dart';
 import 'package:netflix/domain/movie_kkphim/entities/movie.dart';
 
 class MovieMapper {
-  static MovieEntity toEntity(MovieModel model) {
+  static MovieEntity toEntity(KKMovieModel model) {
     return MovieEntity(
       status: model.status,
       msg: model.msg,
       movie: toMovieDetailEntity(model.movie),
-      episodes: model.episodes.map((episode) => toEpisodeEntity(episode)).toList(),
+      episodes:
+          model.episodes.map((episode) => toEpisodeEntity(episode)).toList(),
     );
   }
 
@@ -42,14 +43,16 @@ class MovieMapper {
       actor: movie.actor,
       director: movie.director,
       category: movie.category.map((cat) => toCategoryEntity(cat)).toList(),
-      country: movie.country.map((country) => toCategoryEntity(country)).toList(),
+      country:
+          movie.country.map((country) => toCategoryEntity(country)).toList(),
     );
   }
 
   static EpisodeEntity toEpisodeEntity(Episode episode) {
     return EpisodeEntity(
       serverName: episode.serverName,
-      serverData: episode.serverData.map((data) => toServerDatumEntity(data)).toList(),
+      serverData:
+          episode.serverData.map((data) => toServerDatumEntity(data)).toList(),
     );
   }
 

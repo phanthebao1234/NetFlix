@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/common/bloc/generic_data_cubit.dart';
 import 'package:netflix/common/bloc/generic_data_state.dart';
-import 'package:netflix/common/helper/widgets/movie/movie_card.dart';
-import 'package:netflix/domain/movie/entities/movie.dart';
-import 'package:netflix/domain/movie/usecases/get_recommend_movie.dart';
+import 'package:netflix/common/helper/widgets/tv/tv_card.dart';
+import 'package:netflix/domain/tv/entities/tv_entity.dart';
+import 'package:netflix/domain/tv/usecases/get_similar_tv.dart';
 import 'package:netflix/service_locator.dart';
 
-class RecommendationMovie extends StatelessWidget {
-  const RecommendationMovie(
-      {super.key, required this.movieId, required this.title});
-  final int movieId;
+class SimilarTvs extends StatelessWidget {
+  const SimilarTvs({super.key, required this.tvId, required this.title});
+  final int tvId;
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GenericDataCubit()..getData<List<TVEntity>>(sl<GetRecommendMovieUseCase>(), params: movieId),
+      create: (context) => GenericDataCubit()
+        ..getData<List<TVEntity>>(sl<GetSimilarTVUseCase>(), params: tvId),
       child: BlocBuilder<GenericDataCubit, GenericDataState>(
           builder: (context, state) {
         if (state is DataLoading) {
@@ -43,8 +43,8 @@ class RecommendationMovie extends StatelessWidget {
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return MovieCard(
-                      movieEntity: state.data[index],
+                    return TVCard(
+                      tvEntity: state.data[index],
                     );
                   },
                   separatorBuilder: (context, index) =>
