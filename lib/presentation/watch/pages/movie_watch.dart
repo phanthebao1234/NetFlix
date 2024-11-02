@@ -10,8 +10,9 @@ import 'package:netflix/presentation/watch/widgets/video_title.dart';
 import 'package:netflix/presentation/watch/widgets/video_vote_average.dart';
 
 class MovieWatchPage extends StatelessWidget {
-  const MovieWatchPage({super.key, required this.movieEntity});
+  const MovieWatchPage({super.key, required this.movieEntity, required this.name});
   final TVEntity movieEntity;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class MovieWatchPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             VideoPlayerWidget(
-              id: movieEntity.id!,
+              id: movieEntity.id!, name: 'movie',
             ),
             const SizedBox(
               height: 16,

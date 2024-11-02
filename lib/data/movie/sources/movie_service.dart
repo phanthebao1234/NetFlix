@@ -11,6 +11,7 @@ abstract class MovieService {
   Future<Either> getMovieTrailer(int id);
   Future<Either> getRecommendationMovies(int movieId);
   Future<Either> getSimilarMovies(int movieId);
+  Future<Either> getTVTrailer(int tvId);
 }
 
 class MovieApiService extends MovieService {
@@ -37,14 +38,42 @@ class MovieApiService extends MovieService {
   @override
   Future<Either> getMovieTrailer(int id) async {
     try {
-      var response = await sl<DioClient>().get('${ApiUrl.movie}$id/trailer');
+      var response =
+          await sl<DioClient>().get('${ApiUrl.movie}/movie/$id/trailer');
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        print(response.data);
+      } else if (response.statusCode == 404) {
+        print('Data not found');
+      }
       if (response.data != null) {
         return Right(response.data);
       } else {
         return Left(response.data['message']);
       }
     } on DioException catch (e) {
-      return Left(e.response!.data['message'].toString());
+      return Left(e.response!.data['message']);
+    }
+  }
+
+  @override
+  Future<Either> getTVTrailer(int id) async {
+    try {
+      var response =
+          await sl<DioClient>().get('${ApiUrl.movie}/tv/$id/trailer');
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        print(response.data);
+      } else if (response.statusCode == 404) {
+        print('Data not found');
+      }
+      if (response.data != null) {
+        return Right(response.data);
+      } else {
+        return Left(response.data['message']);
+      }
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
     }
   }
 

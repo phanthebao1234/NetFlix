@@ -13,7 +13,7 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        AppNavigator.push(context, MovieWatchPage(movieEntity: movieEntity,));
+        AppNavigator.push(context, MovieWatchPage(movieEntity: movieEntity, name: 'moive',));
       },
       child: Container(
         width: 180,

@@ -56,6 +56,27 @@ class MovieRepositoryImpl extends MovieRepository {
       },
     );
   }
+  
+  @override
+  Future<Either> getTVTrailer(int tvId) async {
+    var returnedData = await sl<MovieService>().getTVTrailer(tvId);
+    return returnedData.fold(
+      (error) {
+        return Left(error);
+      },
+      (data) {
+        var results = data['trailer'];
+        print(results);
+        if (results == null || results.isEmpty) {
+          return const Left('No trailer found');
+        } else {
+          var movie =
+              TrailerMapper.toEntity(TrailerModel.fromJson(data['trailer']));
+          return Right(movie);
+        }
+      },
+    );
+  }
 
   @override
   Future<Either> getRecommendationMovies(int movieId) async {

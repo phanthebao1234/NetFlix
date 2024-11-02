@@ -20,7 +20,7 @@ class TVWatchPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             VideoPlayerWidget(
-              id: tvEntity.id!,
+              id: tvEntity.id!, name: 'tv',
             ),
             const SizedBox(
               height: 16,
