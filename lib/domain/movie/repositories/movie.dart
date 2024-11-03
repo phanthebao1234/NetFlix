@@ -7,5 +7,5 @@ abstract class MovieRepository {
   Future<Either> getTVTrailer(int tvId);
   Future<Either> getRecommendationMovies(int movieId);
   Future<Either> getSimilarMovies(int movieId);
-  
+  Future<Either> searchMovie(String query);
 }
