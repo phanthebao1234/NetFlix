@@ -2,8 +2,8 @@ import 'package:netflix/data/kkphim_movie/models/movie_model.dart';
 import 'package:netflix/domain/movie_kkphim/entities/movie.dart';
 
 class MovieMapper {
-  static MovieEntity toEntity(KKMovieModel model) {
-    return MovieEntity(
+  static KKMovieEntity toEntity(KKMovieModel model) {
+    return KKMovieEntity(
       status: model.status,
       msg: model.msg,
       movie: toMovieDetailEntity(model.movie),

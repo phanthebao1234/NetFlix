@@ -1,10 +1,10 @@
-class MovieEntity {
+class KKMovieEntity {
   final bool status;
   final String msg;
   final MovieDetail movie;
   final List<EpisodeEntity> episodes;
 
-  MovieEntity({
+  KKMovieEntity({
     required this.status,
     required this.msg,
     required this.movie,

@@ -1,3 +1,5 @@
+import 'package:netflix/core/configs/assets/app_images.dart';
+
 class MovieEntity {
   MovieEntity({
     required this.backdropPath,
@@ -32,4 +34,13 @@ class MovieEntity {
   final bool? video;
   final double? voteAverage;
   final int? voteCount;
+
+  String providePosterPath() {
+    print(posterPath != null
+        ? AppImages.movieImageBasePath + posterPath!
+        : AppImages.noImagePoster);
+    return posterPath != null
+        ? AppImages.movieImageBasePath + posterPath!
+        : AppImages.noImagePoster;
+  }
 }

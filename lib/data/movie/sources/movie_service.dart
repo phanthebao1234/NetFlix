@@ -60,8 +60,7 @@ class MovieApiService extends MovieService {
   Future<Either> getTVTrailer(int tvId) async {
     try {
       var response = await sl<DioClient>().get('${ApiUrl.tv}$tvId/trailers');
-      print(response.statusCode);
-      if (response.statusCode == 200) {
+     if (response.statusCode == 200) {
         print(response.data);
       } else if (response.statusCode == 404) {
         print('Data not found');
@@ -97,12 +96,11 @@ class MovieApiService extends MovieService {
       return Left(e.response!.data['message']);
     }
   }
-  
+
   @override
-  Future<Either> searchMovie(String movie) async{
+  Future<Either> searchMovie(String movie) async {
     try {
-      var response =
-          await sl<DioClient>().get('${ApiUrl.movie}/similar');
+      var response = await sl<DioClient>().get('${ApiUrl.search}movie/$movie');
       return Right(response.data);
     } on DioException catch (e) {
       return Left(e.response!.data['message']);

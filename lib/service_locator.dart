@@ -27,6 +27,8 @@ import 'package:netflix/domain/tv/usecases/get_keyword_tv.dart';
 import 'package:netflix/domain/tv/usecases/get_popular_tv.dart';
 import 'package:netflix/domain/tv/usecases/get_recommend_tv.dart';
 import 'package:netflix/domain/tv/usecases/get_similar_tv.dart';
+import 'package:netflix/domain/tv/usecases/search_tv.dart';
+import 'package:netflix/domain/movie/usecases/search_movie.dart';
 
 final sl = GetIt.instance;
 
@@ -58,6 +60,7 @@ void setupServiceLocator() {
   sl.registerSingleton<GetTrendingMoviesUseCase>(GetTrendingMoviesUseCase());
   sl.registerSingleton<GetNowPlayingMoviesUseCase>(
       GetNowPlayingMoviesUseCase());
+  sl.registerSingleton<SearchMovieUseCase>(SearchMovieUseCase());
 
   // KKMovie UseCase
   sl.registerSingleton<GetFeatureMoviesUseCase>(GetFeatureMoviesUseCase());
@@ -77,5 +80,5 @@ void setupServiceLocator() {
   sl.registerSingleton<GetRecommendTVUseCase>(GetRecommendTVUseCase());
   sl.registerSingleton<GetSimilarTVUseCase>(GetSimilarTVUseCase());
   sl.registerSingleton<GetKeywordTVsUseCase>(GetKeywordTVsUseCase());
-  
+  sl.registerSingleton<SearchTvUseCase>(SearchTvUseCase());
 }

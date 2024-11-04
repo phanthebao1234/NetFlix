@@ -35,8 +35,7 @@ class TVCard extends StatelessWidget {
                     color: Colors.white,
                     image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage(AppImages.movieImageBasePath +
-                            tvEntity.posterPath!)),
+                        image: NetworkImage(tvEntity.providePosterPath())),
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(8),
                         topRight: Radius.circular(8))),
@@ -86,4 +85,3 @@ class TVCard extends StatelessWidget {
     );
   }
 }
-

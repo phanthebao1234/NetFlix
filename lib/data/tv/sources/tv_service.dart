@@ -9,6 +9,7 @@ abstract class TVService {
   Future<Either> getRecommendationTvs(int tvId);
   Future<Either> getSimilarTvs(int tvId);
   Future<Either> getKeywordTvs(int tvId);
+  Future<Either> searchTVs(String query);
 }
 
 class TVApiServiceImpl extends TVService {
@@ -25,7 +26,8 @@ class TVApiServiceImpl extends TVService {
   @override
   Future<Either> getRecommendationTvs(int tvId) async {
     try {
-      var response = await sl<DioClient>().get('${ApiUrl.tv}$tvId/recommendations');
+      var response =
+          await sl<DioClient>().get('${ApiUrl.tv}$tvId/recommendations');
       return Right(response.data);
     } on DioException catch (e) {
       return Left(e.response!.data['message']);
@@ -41,11 +43,21 @@ class TVApiServiceImpl extends TVService {
       return Left(e.response!.data['message']);
     }
   }
-  
+
   @override
   Future<Either> getKeywordTvs(int tvId) async {
     try {
       var response = await sl<DioClient>().get('${ApiUrl.tv}$tvId/keywords');
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
+  
+  @override
+  Future<Either> searchTVs(String query) async {
+    try {
+      var response = await sl<DioClient>().get('${ApiUrl.search}tv/$query');
       return Right(response.data);
     } on DioException catch (e) {
       return Left(e.response!.data['message']);
